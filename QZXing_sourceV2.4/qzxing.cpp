@@ -11,6 +11,9 @@
 #include <QUrl>
 #include <zxing/qrcode/ErrorCorrectionLevel.h>
 #include <QColor>
+#include <QTextCodec>
+#include <QFile>
+#include <QDebug>
 
 using namespace zxing;
 

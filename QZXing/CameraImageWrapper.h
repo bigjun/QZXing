@@ -32,8 +32,6 @@ public:
   
 private:
     QImage image;
-    //unsigned char* pRow;
-    //unsigned char* pMatrix;
 };
 
 #endif //CAMERAIMAGE_H

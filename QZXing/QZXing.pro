@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-05-08T17:26:30
+# Project created by QtCreator 2017-05-08T17:26:30   MAC
 #
 #-------------------------------------------------
 
@@ -8,8 +8,12 @@ QT       += core gui widgets
 greaterThan(QT_VERSION,4.7): lessThan(QT_VERSION, 5.0): Qt += declarative
 greaterThan(QT_MAJOR_VERSION, 4): Qt += quick
 
+VERSION = 2.3
+
 TARGET = QZXing
 TEMPLATE = lib
+
+# CONFIG += staticlib
 
 DEFINES += QZXING_LIBRARY
 
@@ -19,6 +23,7 @@ INCLUDEPATH += $$PWD/zxing/
 DEFINES += QXZXING_LIBRARY \
         ZXING_ICONV_CONST \
         DISABLE_LIBRARY_FEATURES
+
 
 
 HEADERS += $$PWD/qzxing_global.h \
@@ -240,9 +245,50 @@ SOURCES += $$PWD/CameraImageWrapper.cpp \
     $$PWD/zxing/bigint/BigIntegerAlgorithms.cc \
     $$PWD/zxing/bigint/BigInteger.cc
 
+symbian {
+    TARGET.UID3 = 0xE618743C
+    TARGET.EPOCALLOWDLLDATA = 1
+    addFiles.sources = QZXing.dll
+    addFiles.path = !:/sys/bin
+    DEPLOYMENT += addFiles
+#    TARGET.CAPABILITY = All -TCB -AllFiles -DRM
+    TARGET.CAPABILITY += NetworkServices \
+        ReadUserData \
+        WriteUserData \
+        LocalServices \
+        UserEnvironment \
+        Location
+}
+
 unix {
     target.path = /usr/lib
     DEFINES += NOFMAXL
     DEFINES += NO_ICONV
     INSTALLS += target
+}
+
+win32-msvc*{
+
+    INCLUDEPATH += $$PWD/zxing/win32/zxing \
+                    $$PWD/zxing/win32/zxing/msvc
+    HEADERS += $$PWD/zxing/win32/zxing/msvc/stdint.h \
+                $$PWD/zxing/win32/zxing/iconv.h
+
+    SOURCES += $$PWD/zxing/win32/zxing/win_iconv.c
+}
+
+win32-g++{
+
+    INCLUDEPATH += $$PWD/zxing/win32/zxing
+
+    HEADERS += $$PWD/zxing/win32/zxing/iconv.h
+
+    SOURCES += $$PWD/zxing/win32/zxing/win_iconv.c
+}
+
+!win32{
+    DEFINES += NO_ICONV
+}
+winrt {
+    DEFINES += NO_ICONV
 }

@@ -52,19 +52,16 @@ inline float nan() {return std::numeric_limits<float>::quiet_NaN();}
 //#include <cmath>
 
 #include <math.h>
-#include <stdio.h>
 
 
 namespace zxing {
 inline bool isnan_z(float v) {
-    return isnan(v); //isnan的返回值是一个int
+    return isnan(v);
 }
 inline bool isnan_z(double v) {
     return isnan(v);
 }
-inline float nan() {
-    return std::numeric_limits<float>::quiet_NaN();
-}
+inline float nan() {return std::numeric_limits<float>::quiet_NaN();}
 }
 
 #endif

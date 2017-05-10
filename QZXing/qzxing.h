@@ -1,7 +1,7 @@
 #ifndef QZXING_H
 #define QZXING_H
 
-#include "qzxing_global.h"
+#include "QZXing_global.h"
 #include <QObject>
 #include <QImage>
 
