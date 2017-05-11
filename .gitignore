@@ -3,7 +3,9 @@
 *.lo
 *.o
 *.obj
-
+*.pro.user
+*-Debug/
+*-Release/
 # Precompiled Headers
 *.gch
 *.pch
